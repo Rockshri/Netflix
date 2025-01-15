@@ -6,6 +6,10 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  //StrictMode is a tool for highlighting potential problems in an application.
+  // Like Fragment, StrictMode does not render any visible UI. It activates additional checks and warnings for its descendants.
+  // It renders componants double time two check incosistencies in the call.
+  //It only happens in development mode not i production mode.
   <React.StrictMode>
     <App />
   </React.StrictMode>
