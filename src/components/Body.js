@@ -6,12 +6,6 @@ import Errorpage from './Errorpage';
 
 const Body = () => {
      
-
-
- 
-
-
-
     const appRouter = createBrowserRouter([{
       path: "/",
       element:<Login/>,
@@ -34,4 +28,4 @@ const Body = () => {
   )
 }
 
-export default Body
+export default Body;
