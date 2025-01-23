@@ -20,9 +20,9 @@ const moviesSlice = createSlice({
         },
         addTopRatedMovies : (state, action)=>{
           state.popularMovies = action.payload;
-        }
-    }
-})
+        },
+    },
+});
 
 export const { addNowPlayingMovies, addTrailorVideo, addPopularMovies, addTopRatedMovies } = moviesSlice.actions;
 

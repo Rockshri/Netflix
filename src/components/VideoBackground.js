@@ -57,4 +57,4 @@ const VideoBackground = (props) => {
   )
 }
 
-export default VideoBackground
+export default VideoBackground;

@@ -5,10 +5,20 @@ import Maincontainer from './Maincontainer';
 import SecondaryContainer from './SecondaryContainer';
 import usePopularMovies from '../hooks/usePopularMovies';
 import useTopRatedMovies from '../hooks/useTopRatedMovies';
+import GptSearchPage from './GptSearchPage';
+import { useSelector } from 'react-redux';
 
 
 
 const Browse = () => {
+
+  //if showGptSearch is True then show Gptsearch Componants else MainCaontainer and SecondaryContainer
+
+    const showGptSearch = useSelector((store)=>store.gpt.showGptSearch);
+
+
+
+
 
 // We made custom hook for the below code.
   useNowPlayingMovies();
@@ -37,11 +47,17 @@ const Browse = () => {
   return (
     <div>
       <Header/>
-      <Maincontainer/>
-      <SecondaryContainer/>
-      
-      
-    </div>
+      {
+        showGptSearch ? ( 
+        <GptSearchPage/> 
+      ) : ( 
+        <>
+        <Maincontainer/>
+        <SecondaryContainer/> 
+        </>
+      )
+      }
+  </div>
   )
 }
 

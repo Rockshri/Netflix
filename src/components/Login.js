@@ -139,7 +139,7 @@ const Login = () => {
     ref={ password }
     type='password' 
     placeholder='Password' 
-    className='p-4 my-2 w-full  bg-blue-300 bg-opacity-45 rounded'/>
+    className='p-4 my-2 w-full  bg-blue-300 bg-opacity-45 rounded' />
     <p className='text-red-700 font-bold mx-2 text-lg'>{ errorMessage }</p>
     <button type='submit'
     className='p-4 my-8 bg-red-700 w-full rounded' onClick={ (e)=>handleClick(e) }>{ isSignIn ? "Sign In" : "Sign Up" }

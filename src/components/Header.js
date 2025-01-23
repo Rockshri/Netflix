@@ -4,24 +4,37 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../utils/firebase";
 import { addUser, removeUser } from '../utils/userSlice';
+import { toggleGptService } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
 import { useEffect } from 'react';
 import {LOGO} from "../utils/constants";
+import { SUPPORTED_LANGUAGE } from "../utils/constants";
 
 const Header = () => {
   //useSelector is a hook from react-redux which is used to get the state from the store.
   //It takes a function as an argument which returns the state.
   //The state is the current state of the store.
 
-  const getUser = useSelector((store)=>store.user) 
+  const getUser = useSelector((store)=>store.user) ;
+  const getGptSearchToggle = useSelector((store)=>store.gpt.showGptSearch);
 
   // console.log(getUser);
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-  
 
-  
+  const languageHandler = (e)=>{
+      // console.log(e.target.value);
+      dispatch(changeLanguage(e.target.value));
+      
+  }
+
+  const GptSearchClickHandler = ()=>{
+       //Toggling gpt search
+       //we don't have to pass any data(action) here bcz, we r just toggling the button
+        dispatch(toggleGptService());
+  };
+
 
   function signoutHandler(){
      signOut(auth)
@@ -44,7 +57,7 @@ const Header = () => {
      //If the user is not logged in, we will dispatch the removeUser action.
      // onAuthStateChanged won't listen the updateProfile function. because it only when change in authentication state.
      
-       const unsubscribe =  onAuthStateChanged(auth, (user) => {
+       const unsubscribe = onAuthStateChanged(auth, (user) => {
        if (user) {
                  const {uid, email, displayName, photoURL} = user;
                      dispatch(addUser({
@@ -76,12 +89,27 @@ const Header = () => {
      src={LOGO}
      alt='Netflix Logo'
      />
+     <div className="flex">
+     {getGptSearchToggle && <select 
+     className="p-3 my-2 rounded-lg bg-gray-900 text-white" 
+     onChange={languageHandler}>
+      { SUPPORTED_LANGUAGE.map((item)=>
+      <option 
+      key={item.identifiers} 
+      value={item.identifiers}>
+      {item.name}
+      </option>)
+      }
+     </select>} 
+      
      {getUser && <div className='flex mx-4'>
+      <button className="text-white bg-green-800 rounded-lg h-14 my-2 px-3" onClick={GptSearchClickHandler}>{getGptSearchToggle ? "Homepage" : "GPT Search"}</button>
       <img className='h-10 mx-3 my-4' alt='userImage' src={getUser?.photoURL}></img>
       <button onClick={signoutHandler} className='cursor-pointer text-lg bg-red-600 rounded-lg h-14 my-2 px-3 '>Sign Out</button>
       {/* <div>{getUser.displayName}</div> */}
       {/* <div>hi</div> */}
      </div>}
+     </div>
    
     </div>
   )
