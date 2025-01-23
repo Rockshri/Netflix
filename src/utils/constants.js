@@ -25,4 +25,4 @@ export const API_OPTIONS = {
    ];
 
 
-   export const OPEN_AI_KEY = "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";
+   export const OPEN_AI_KEY = "";

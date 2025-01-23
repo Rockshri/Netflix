@@ -10,9 +10,9 @@ root.render(
   // Like Fragment, StrictMode does not render any visible UI. It activates additional checks and warnings for its descendants.
   // It renders componants double time two check incosistencies in the call.
   //It only happens in development mode not i production mode.
-  <React.StrictMode>
+  //<React.StrictMode>
     <App />
-  </React.StrictMode>
+  //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

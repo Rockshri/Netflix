@@ -11,10 +11,13 @@ const GptSearchBar = () => {
 
    async function handleGptSearchClick(){
         console.log(searchText.current.value);
-
+      const gptQuery = "Act as movie recommedation system and suggest some movies for the query :"
+       + searchText.current.value + 
+       "also give me name of 5 movies, comma separated like example given ahead. example: Don, 3 idiots, Sholay, Golmaal, Krish";
        const gptResults = await openai.chat.completions.create({
-          messages: [{ role: 'user', content: 'Say this is a test' }],
-          model: 'gpt-4o',
+          messages: [{ role: 'user', content: gptQuery }],
+          //gpt-4o
+          model: 'gpt-3.5-turbo',
         });
         console.log(gptResults);
         
